@@ -30,7 +30,15 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts"
   ],
-  "exclude": ["node_modules", "dist", "coverage", "**/*.test.ts", "**/__tests__"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "src/tests",
+    "**/*.test.ts",
+    "**/__tests__",
+    "**/setup.ts"
+  ]
 }
