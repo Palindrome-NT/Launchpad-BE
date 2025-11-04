@@ -41,9 +41,9 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "blob:", "http://localhost:5000"],
-      mediaSrc: ["'self'", "data:", "blob:", "http://localhost:5000"],
-      connectSrc: ["'self'", "http://localhost:5000"],
+      imgSrc: ["'self'", "data:", "blob:", process.env.BASE_URL!],
+      mediaSrc: ["'self'", "data:", "blob:", process.env.BASE_URL!],
+      connectSrc: ["'self'", process.env.BASE_URL!],
     },
   },
 }));
