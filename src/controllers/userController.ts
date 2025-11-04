@@ -5,9 +5,7 @@ import { AuthenticatedRequest } from '../middlewares/auth';
 export class UserController {
   static async register(req: Request, res: Response): Promise<void> {
     try {
-      console.log("🚀 ~ UserController ~ register ~ req.body:", req.body)
       const result = await UserService.createUser(req.body);
-      console.log("🚀 ~ UserController ~ register ~ result:", result)
 
       if (result.success) {
         res.status(201).json(result);
@@ -39,14 +37,14 @@ export class UserController {
         res.cookie('accessToken', accessToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
+          sameSite: 'none',
           maxAge: 15 * 60 * 1000,
         });
 
         res.cookie('refreshToken', refreshToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: 'strict',
+          sameSite: 'none',
           maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
