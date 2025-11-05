@@ -21,14 +21,20 @@ dotenv.config({ path: '.env.local' });
 const app = express();
 const server = createServer(app);
 
-const corsOptions = {
-  origin: "https://launchpad-fe-delta.vercel.app",
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-};
+// const corsOptions = {
+//   origin: "https://launchpad-fe-delta.vercel.app",
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://launchpad-fe-delta.vercel.app",
+    credentials: true,
+  })
+);
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   contentSecurityPolicy: {
