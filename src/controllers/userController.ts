@@ -39,7 +39,6 @@ export class UserController {
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
           maxAge: 15 * 60 * 1000,
-          path: '/',
         });
 
         res.cookie('refreshToken', refreshToken, {
@@ -47,7 +46,6 @@ export class UserController {
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
           maxAge: 7 * 24 * 60 * 60 * 1000,
-          path: '/',
         });
 
         const { accessToken: _, refreshToken: __, ...responseData } = result.data;
@@ -80,17 +78,15 @@ export class UserController {
         res.cookie('accessToken', accessToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+          sameSite: 'strict',
           maxAge: 15 * 60 * 1000,
-          path: '/',
         });
 
         res.cookie('refreshToken', refreshToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+          sameSite: 'strict',
           maxAge: 7 * 24 * 60 * 60 * 1000,
-          path: '/',
         });
 
         const { accessToken: _, refreshToken: __, ...responseData } = result.data;
@@ -153,17 +149,15 @@ export class UserController {
         res.cookie('accessToken', accessToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+          sameSite: 'strict',
           maxAge: 15 * 60 * 1000,
-          path: '/',
         });
 
         res.cookie('refreshToken', refreshToken, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+          sameSite: 'strict',
           maxAge: 7 * 24 * 60 * 60 * 1000,
-          path: '/',
         });
 
         const { accessToken: _, refreshToken: __, ...responseData } = result.data;

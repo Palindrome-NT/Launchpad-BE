@@ -16,7 +16,7 @@ import messageRoutes from './routes/messages';
 import { initializeSocket } from './utils/socket';
 import { setSocketIO } from './utils/socketBus';
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 const app = express();
 const server = createServer(app);
