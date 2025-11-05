@@ -22,14 +22,7 @@ const app = express();
 const server = createServer(app);
 
 const corsOptions = {
-  origin: function (origin: any, callback: any) {
-    const allowedOrigins = process.env.FRONTEND_URL?.split(',') || ['http://localhost:3000'];
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: "https://launchpad-fe-delta.vercel.app",
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
