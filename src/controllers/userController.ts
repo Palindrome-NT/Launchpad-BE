@@ -34,27 +34,34 @@ export class UserController {
       if (result.success && result.data) {
         const { accessToken, refreshToken } = result.data;
 
-        res.cookie('accessToken', accessToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-          path: '/',
-          maxAge: 15 * 60 * 1000,
-        });
+        // res.cookie('accessToken', accessToken, {
+        //   httpOnly: true,
+        //   secure: process.env.NODE_ENV === 'production',
+        //   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        //   path: '/',
+        //   maxAge: 15 * 60 * 1000,
+        // });
 
-        res.cookie('refreshToken', refreshToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-          path: '/',
-          maxAge: 7 * 24 * 60 * 60 * 1000,
-        });
+        // res.cookie('refreshToken', refreshToken, {
+        //   httpOnly: true,
+        //   secure: process.env.NODE_ENV === 'production',
+        //   sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        //   path: '/',
+        //   maxAge: 7 * 24 * 60 * 60 * 1000,
+        // });
+
+        res.setHeader("Set-Cookie", [
+          `accessToken=${accessToken}; Path=/; HttpOnly; Secure; SameSite=None; Partitioned; Max-Age=${15 * 60}`,
+          `refreshToken=${refreshToken}; Path=/; HttpOnly; Secure; SameSite=None; Partitioned; Max-Age=${7 * 24 * 60 * 60}`
+        ]);
 
         const { accessToken: _, refreshToken: __, ...responseData } = result.data;
 
         res.status(200).json({
           ...result,
           data: responseData,
+          accessToken,
+          refreshToken
         });
       }  else {
         res.status(401).json({
