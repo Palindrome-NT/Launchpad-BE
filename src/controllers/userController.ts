@@ -55,6 +55,8 @@ export class UserController {
         res.status(200).json({
           ...result,
           data: responseData,
+          accessToken,
+          refreshToken
         });
       }  else {
         res.status(401).json({
