@@ -40,6 +40,7 @@ export const createAuthRoutes = (dependencies: AuthDependencies) => {
   router.post('/refresh-token', validateRequest(refreshTokenSchema), dependencies.userController.refreshToken);
 
   router.post('/logout', (req, res) => {
+    console.log('🚀🚀🚀🚀🚀🚀🚀🚀🚀logging outttttttttttttttttttt-------------->')
     res.clearCookie('auth-token', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
